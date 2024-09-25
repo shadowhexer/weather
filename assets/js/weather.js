@@ -38,7 +38,7 @@ async function checkWeather(city) {
         } 
         else {
             var countryName = await country.json();
-            document.querySelector(".country").textContent = countryName.name.official;
+            document.querySelector(".country").textContent = countryName.official;
         }
         
         if(data.weather[0].main == "Clouds") {
