@@ -1,7 +1,7 @@
 const apiKey = "e5c02fcd2a27c0d23c1d78d8260f0376";
 const apiURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const mapURL = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d!2d";
-const countryName = "https://restcountries.com/v3.1/alpha/";
+const countryFetch = "https://restcountries.com/v3.1/alpha/";
 
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
@@ -32,13 +32,13 @@ async function checkWeather(city) {
         document.querySelector(".wind").textContent = data.wind.speed + " kph"; // Wind speed
 
         /*  Country code fetch   */
-        const country = await fetch(countryName + data.sys.country);
+        const country = await fetch(countryFetch + data.sys.country);
         if(country.status == 404) {
             document.querySelector(".country").style.display = "none";
         } 
         else {
-            var name = await country.json();
-            document.querySelector(".country").textContent = name.name.official;
+            var countryName = await country.json();
+            document.querySelector(".country").textContent = countryName.name.official;
         }
         
         if(data.weather[0].main == "Clouds") {
